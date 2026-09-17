@@ -1,0 +1,2 @@
+<!doctype html><html><head><meta name="viewport" content="width=device-width,initial-scale=1"><title>Complete</title>
+<style>body{font-family:Arial;background:#f4f4f4;padding:40px 20px}.card{max-width:520px;margin:auto;background:#fff;border-radius:24px;padding:32px;text-align:center}</style></head><body><div class="card"><h1>✅ Demo Complete</h1><p>The synthetic verification event was sent to the configured Telegram bot.</p></div></body></html>
