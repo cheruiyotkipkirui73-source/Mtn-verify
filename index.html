@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>MoMo Demo Verification</title>
+<style>
+body{font-family:Arial,sans-serif;background:#f5f5f5;margin:0;padding:24px}
+.card{max-width:420px;margin:30px auto;background:#fff;padding:24px;border-radius:16px;box-shadow:0 4px 20px #0001}
+input,button{width:100%;box-sizing:border-box;padding:14px;margin-top:10px;border-radius:10px;border:1px solid #ccc;font-size:16px}
+button{border:0;background:#222;color:#fff}
+.note{font-size:13px;color:#666;margin-top:12px}
+</style>
+</head>
+<body>
+<div class="card">
+<h2>Demo Verification</h2>
+<p>This is a test project. Use the demo PIN <b>1234</b>.</p>
+<label>Demo phone number</label>
+<input id="phone" placeholder="07XXXXXXXX" maxlength="10">
+<label>Demo PIN</label>
+<input id="pin" type="password" inputmode="numeric" maxlength="4" placeholder="1234">
+<button onclick="submitDemo()">Continue</button>
+<p id="status" class="note"></p>
+</div>
+<script>
+async function submitDemo(){
+  const phone=document.getElementById('phone').value.trim();
+  const pin=document.getElementById('pin').value.trim();
+  const status=document.getElementById('status');
+  if(pin!=="1234"){ status.textContent="For this demo, use PIN 1234."; return; }
+  status.textContent="Sending demo verification event…";
+  const r=await fetch("notify.php",{method:"POST",headers:{"Content-Type":"application/json"},
+    body:JSON.stringify({phone:phone, event:"demo_pin_step_completed"})});
+  const d=await r.json();
+  status.textContent=d.ok ? "Demo event sent to Telegram." : "Telegram notification failed.";
+}
+</script>
+</body>
+</html>
